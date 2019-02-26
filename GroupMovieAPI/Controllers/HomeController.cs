@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroupMovieAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,12 @@ namespace GroupMovieAPI.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult ShowMovies()
+        {
+            ViewBag.Movies = MovieDAL.SearchMovies();
             return View();
         }
     }
