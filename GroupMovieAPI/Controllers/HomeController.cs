@@ -30,8 +30,18 @@ namespace GroupMovieAPI.Controllers
 
         public ActionResult ShowMovies()
         {
-            ViewBag.Movies = MovieDAL.SearchMovies();
+            ViewBag.Movies = Session["ShowMovies"];
             return View();
         }
+
+        public ActionResult Search(string UserInput)
+        {
+            List<MovieDB> SearchedMovies = MovieDAL.SearchMovies(UserInput);
+            Session["ShowMovies"] = SearchedMovies;
+
+            return RedirectToAction("ShowMovies");
+        }
+
+
     }
 }

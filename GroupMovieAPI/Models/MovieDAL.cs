@@ -24,9 +24,9 @@ namespace GroupMovieAPI.Models
             return data;
         }
 
-        public static List<MovieDB> SearchMovies()
+        public static List<MovieDB> SearchMovies(string UserInput)
         {
-            string output = GetData("http://www.omdbapi.com/?s=Cars&apikey=61912d7d&type=movie");
+            string output = GetData($"http://www.omdbapi.com/?s={UserInput}&apikey=61912d7d&type=movie");
             List<MovieDB> SearchMovies = new List<MovieDB>();
             JObject movieJSon = JObject.Parse(output);
 
@@ -50,6 +50,7 @@ namespace GroupMovieAPI.Models
                 movie.Type = SearchMovieTokens[i]["Type"].ToString();
                 movie.imdbID = SearchMovieTokens[i]["imdbID"].ToString();
                 SearchMovies.Add(movie);
+            
             }
             return SearchMovies;
             
